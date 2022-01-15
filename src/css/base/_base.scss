@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.cursor {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.15s ease;
+}
+
+.cursor:hover {
+  color: #ccc;
+  transition: 0.15s ease;
+}
+
+.container {
+  margin-top: 85px;
+}
+
+#container {
+  background-color: hsl(247, 17%, 25%);
+  padding: 20px;
+  margin-top: 85px;
+}
+
+a {
+  color: white;
+}
+
+article {
+  font-family: 'Ubuntu', serif;
+  font-weight: 200;
+  color: white;
+}
+
+body {
+  background: hsl(247, 17%, 30%);
+  /*::-moz-selection {
+    background: hsl(247, 17%, 35%);
+    color: white;
+  }
+  ::selection {
+    background: hsl(247, 17%, 35%);
+    color: white;
+  }*/
+}
+
+button {
+  font-family: 'Ubuntu', serif;
+  font-size: 0.875em !important;
+}
+
+form {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: white;
+  font-family: 'Ubuntu', serif;
+  font-weight: 500;
+}
+
+input {
+  ::-moz-selection {
+    background: #666;
+  }
+  ::selection {
+    background: #666;
+  }
+}
+
+input,
+textarea {
+  font-family: 'Ubuntu', serif;
+}
+
+label {
+  font-family: 'Ubuntu', serif;
+  color: white;
+}
+
+select,
+option {
+  font-family: 'Ubuntu', serif;
+}
+
+p {
+  font-size: 14px;
+}
+
+p,
+li {
+  color: white;
+  font-family: 'Ubuntu', serif;
+  font-weight: 200;
+}
+
+span {
+  font-family: 'Ubuntu', serif;
+  font-weight: 200;
+  color: white;
+}
+
+table {
+  width: calc(100% - 30px);
+}
+
+table a {
+  text-decoration: underline;
+  transition: 0.3s ease;
+}
+
+table a:hover,
+table span:hover {
+  color: #ccc;
+  transition: 0.3s ease;
+}
+
+table div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+table button:focus {
+  outline: none;
+}
+
+th,
+td {
+  font-family: 'Ubuntu', serif;
+  font-weight: 500;
+  color: white;
+  padding: 8px 25px 8px 12px;
+}
+
+td {
+  font-weight: 200;
+}
+
+ul {
+  padding: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.bioArea {
+  padding: 0 20px 0 20px;
+}
+
+.block {
+  display: block;
+}
+
+.col {
+  margin-top: 12px;
+}
+
+.profileHeaderText {
+  color: white;
+  cursor: pointer;
+  transition: 0.15s ease;
+  text-align: center;
+}
+
+.profileHeaderText:hover {
+  transition: 0.15s ease;
+  color: #bbb;
+  text-decoration: none;
+}
+
+.detailDesc {
+  font-size: 0.875em;
+}
+
+.editDetailsArea {
+  background: #333;
+  border-radius: 8px;
+  padding: 20px 20px 0 20px;
+  margin: 20px 0 20px 0;
+}
+
+.linkText {
+  color: #9adada;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.linkText:hover {
+  color: #80b4b4;
+  text-decoration: none;
+  transition: 0.15s ease;
+}
+
+.profileArea {
+  background: #1b1b1b;
+  border-radius: 30px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin: 0 0 20px 0;
+  padding: 20px 20px 3px 20px;
+}
+
+.profilePicArea {
+  padding: 20px;
+}
+
+.profilePicBG {
+  background: black;
+  border-radius: 50%;
+}
+
+.profilePic {
+  width: 100%;
+  border-radius: 50%;
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.profilePic:hover {
+  cursor: pointer;
+  opacity: 0.85;
+  transition: 0.3s ease;
+}
+
+.singleProfilePicArea {
+  max-width: 300px;
+  margin: 0 0 20px 0;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 20px 0;
+  align-items: center;
+}
+
+#hidePreloader {
+  display: none;
+}
+
+#showPreloader {
+  display: block;
+}

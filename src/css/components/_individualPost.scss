@@ -1,0 +1,45 @@
+#individualPostBottomMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+#individualPostAuthorLink,
+.individualPostIndividualTag {
+  cursor: pointer;
+  font-weight: 300;
+  text-decoration: underline;
+  transition: 0.15s ease;
+}
+
+#individualPostAuthorLink:hover,
+.individualPostIndividualTag:hover {
+  opacity: 0.75;
+  transition: 0.15s ease;
+}
+
+#individualPostFeaturePhoto {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+#individualPostFeaturePhoto img {
+  user-select: none;
+  max-height: 480px;
+}
+
+#individualPostTags {
+  margin: 30px 0 20px 0;
+}
+
+#individualPostSocialMediaLinks {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+#individualPostSocialMediaLinks li {
+  margin: 0 10px 0 0;
+}

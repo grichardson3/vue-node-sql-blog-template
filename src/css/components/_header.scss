@@ -1,0 +1,45 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: hsl(247, 18%, 15%);
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+}
+
+#headerRightSide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logoArea {
+  user-select: none;
+  display: block;
+}
+
+#searchBar {
+  margin-right: 20px;
+  width: 360px;
+}
+
+@media screen and (max-width: 960px) {
+  #searchBar {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #searchBar {
+    width: 300px;
+  }
+  #logoArea {
+    display: none;
+  }
+  #headerRightSide {
+    width: 100%;
+  }
+}

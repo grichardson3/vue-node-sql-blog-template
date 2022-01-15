@@ -1,0 +1,61 @@
+#tagBrowserArea {
+  background-color: hsl(247, 17%, 30%);
+  border-radius: 10px;
+  padding: 20px 30px 30px 30px;
+  margin: 0 0 50px 0;
+}
+
+#tagBrowserArea h2 {
+  text-align: center;
+}
+
+#tagBrowserScroller {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 10px 0;
+}
+
+#tagBrowserTagList {
+  display: flex;
+  margin: 0 20px 0 20px;
+  padding: 0;
+  list-style-type: none;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#tagBrowserTagList::-webkit-scrollbar {
+  display: none;
+}
+
+#tagBrowserTagList li {
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  margin: 0 10px 0 10px;
+  background-color: hsl(247, 17%, 20%);
+  border-radius: 30px;
+}
+
+#tagBrowserTagList li:hover {
+  text-decoration: underline;
+}
+
+#tagBrowserLeftArrow,
+#tagBrowserRightArrow {
+  border: 0;
+  background-color: hsl(247, 17%, 38%);
+  border-radius: 50%;
+  color: white;
+  width: 60px;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 0.25em;
+}
+
+#tagBrowserLeftArrow:focus,
+#tagBrowserRightArrow:focus {
+  outline: none;
+}

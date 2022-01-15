@@ -47,7 +47,7 @@ export default {
 
         for (const key in responseData) {
             const post = {
-                postID: key,
+                postID: JSON.parse(key) + 1,
                 postAuthor: responseData[key].post_author,
                 postContent: responseData[key].post_content,
                 postDate: responseData[key].post_date,

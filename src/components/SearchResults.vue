@@ -1,27 +1,23 @@
 <template>
     <div id="tagPostsResultString">
-        <h2>Filter by Tag:
-            <span id="tagPostsIndividualTag">
-                {{ postTagText }}
-            </span>
-        </h2>
+        <h2>Search Results for: {{ searchTerm }}</h2>
     </div>
-    <div
-        v-for="post in filteredPosts"
-        v-bind:key="post.postID"
-        v-bind:id="post.postID"
-        v-bind:dbid="post.postDBID"
-        v-bind:author="post.postAuthor"
-        v-bind:content="post.postContent"
-        v-bind:date="post.postDate"
-        v-bind:featurephoto="post.postFeaturePhoto"
-        v-bind:tag="post.postTag"
-        v-bind:title="post.postTitle"
-        v-bind:views="post.postViews"
-        class="row"
-    >
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div 
+    <div class="row">
+        <div
+            v-for="post in filteredPosts"
+            v-bind:key="post.postID"
+            v-bind:id="post.postID"
+            v-bind:dbid="post.postDBID"
+            v-bind:author="post.postAuthor"
+            v-bind:content="post.postContent"
+            v-bind:date="post.postDate"
+            v-bind:featurephoto="post.postFaturePhoto"
+            v-bind:tag="post.postTag"
+            v-bind:title="post.postTitle"
+            v-bind:views="post.postViews"
+            class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+        >
+            <div
                 class="blogPostFeaturePhoto"
                 v-on:click="toPost(post.postID)"
             >
@@ -31,9 +27,7 @@
                     v-bind:title="post.postTitle"
                 >
             </div>
-            <h2 v-on:click="toPost(post.postID)">
-                <span class="blogPostTitle">{{ post.postTitle }}</span>
-            </h2>
+            <h2 v-on:click="toPost(post.postID)" class="cursor">{{ post.postTitle }}</h2>
             <div class="blogPostMetaArea">
                 <div>
                     <span>Author: </span>
@@ -43,7 +37,7 @@
                     >{{ post.postAuthor }}</span>
                 </div>
                 <span class="blogPostDateText">
-                    Date Posted: {{ this.postDates[post.postID] }}
+                    Date Posted: {{ moment.unix(post.postDate).format("MMM Do, YYYY") }}
                 </span>
             </div>
             <p class="blogPostContent">
@@ -60,10 +54,12 @@
                 >Read More</span>
                 <div>
                     <span class="blogPostTagText">Tags: </span>
-                    <span
+                    <span 
                         class="blogPostIndividualTagText"
                         v-on:click="toTag(post.postTag)"
-                    >{{ post.postTag }}</span>
+                    >
+                        {{ post.postTag }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -72,17 +68,42 @@
 
 <script>
 
-import moment from "moment";
-
 export default {
     data(){
         return {
             posts: [],
             filteredPosts: [],
-            postTagText: "",
-            postAmount: 0,
-            postDates: []
+            searchTerm: window.location.href.split("/")[window.location.href.split("/").length - 1]
         }
+    },
+    created(){
+        const promise = new Promise((resolve, reject) => {
+            // Retries the promise if the information isn't loaded in fast enough
+            const retryPromise = () => {
+                setTimeout(() => {
+                    if (this.$store.state.posts.posts.length > 0) {
+                        resolve('Success');
+                    } else if (this.$store.state.posts.posts.length === 0) {
+                        retryPromise();
+                    } else {
+                        reject("Failed.");
+                    }
+                }, 25);
+            }
+            if (this.$store.state.posts.posts.length > 0) {
+                resolve('Success');
+            } else if (this.$store.state.posts.posts.length === 0) {
+                retryPromise();
+            } else {
+                reject("Failed.");
+            }
+        })
+        promise.then(() => {
+            this.posts = this.$store.state.posts.posts;
+            this.filteredPosts = this.posts.filter((post) => {
+                return ( post.postTitle.toLowerCase().includes(this.searchTerm.toLowerCase()) );
+            });
+        });
     },
     methods: {
         toPost(id){
@@ -95,45 +116,13 @@ export default {
             this.$router.push(`/tag/` + tag);
         }
     },
-    created(){
-        const promise = new Promise((resolve, reject) => {
-            // Retries the promise if the information isn't loaded in fast enough
-            const retryPromise = () => {
-                setTimeout(() => {
-                    if (
-                        this.$store.state.posts.posts.length > 0
-                    ) {
-                        resolve('Success');
-                    } else if (
-                        this.$store.state.posts.posts.length === 0
-                    ) {
-                        retryPromise();
-                    } else {
-                        reject("Failed.");
-                    }
-                }, 25);
-            }
-            if (
-                this.$store.state.posts.posts.length > 0
-            ) {
-                resolve('Success');
-            } else if (
-                this.$store.state.posts.posts.length === 0
-            ) {
-                retryPromise();
-            } else {
-                reject("Failed.");
-            }
-        });
-        promise.then(() => {
-            this.posts = this.$store.state.posts.posts;
-            this.filteredPosts = this.posts.filter((post) => post.postTag.toLowerCase().includes(window.location.href.split("/")[window.location.href.split("/").length - 1]));
-            this.postTagText = this.posts[0].postTag;
-            this.posts.forEach((post) => {
-                let dateValue = moment.unix(post.postDate).format("MMM Do, YYYY");
-                this.postDates.push(dateValue);
+    watch: {
+        '$route': function () {
+            this.searchTerm = window.location.href.split("/")[window.location.href.split("/").length - 1]
+            this.filteredPosts = this.posts.filter((post) => {
+                return ( post.postTitle.toLowerCase().includes(this.searchTerm.toLowerCase()) );
             });
-        });
+        }
     }
 }
 </script>
